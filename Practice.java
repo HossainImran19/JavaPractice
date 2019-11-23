@@ -3,81 +3,104 @@ package imran.practice.com;
 public class Practice {
 	
 public static void main(String[] args) {
-		
-		Practice.problemNo1(8);
-		Practice.problemNo2();
-		Practice.problemNo3(24,45);
-		Practice.problemNo4();
-		
-	}
 	
-	public static void problemNo1(int dayNo) {
-		switch(dayNo) {
-		case 1:
-			System.out.println("Saturday");
-			break;
-		case 2:
-			System.out.println("Sunday");
-			break;
-		case 3:
-			System.out.println("Monday");
-			break;
-		case 4:
-			System.out.println("Tuesday");
-			break;
-		case 5:
-			System.out.println("Wednesday");
-			break;
-		case 6:
-			System.out.println("Thursday");
-			break;
-		case 7:
-			System.out.println("Friday");
-			break;
-		default:
-			System.out.println("Invalide Day");
-			
-		}
+	  Practice call = new Practice();
+	  call.problemNo2(5);
+	  call.problemNo3();
+	  call.problemNo4();
+	  
 	}
 
-	public static void problemNo2() {
-		int a = 2, b = 3;
-		char op = '/';
-		switch (op) {
-		case '+':
-			System.out.println(a + b);
-			break;
-		case '-':
-			System.out.println(a - b);
-			break;
-		case '*':
-			System.out.println(a * b);
-			break;
-		default:
-			System.out.println(a / b);
-		}
+	public void problemNo2(int n) {
+		int b = n;
+		System.out.println("Kaiyom vai's pattern ==> \n");
+		for(int i = 1; i <= n; i++) {
+			for(int j = 0; j < n; j++) {
+				System.out.print("* ");
+	
+			}
+			System.out.print("\t");
+			
+				if(i == 1 || i == n) {
+					for(int k = 1; k <= n; k++) {
+						
+					   System.out.print("* ");
+					   
+					}
+					
+				}else {
+					
+				
+					System.out.print("*");
+					space(n);
+					System.out.print("*");
+					
+				}
+				System.out.print("\t");
+				for(int j = 0; j < i; j++ ) {
+					System.out.print(" ");
+				}
+				
+				if(i == 1) {
+					for(int k = 0; k < n; k++) {
+						System.out.print("* ");
+					}
+					System.out.println();
+					continue;
+				}
+				if(i == n) {
+					System.out.print("*");
+					break;
+				}
+				System.out.print("*");
+				for(int l = 0; l < b; l++) {
+					System.out.print(" ");
+					}
+				System.out.print("*");
+				b -= 2;
+				System.out.println();
+			}
 	}
 	
-	public static void problemNo3(int a, int b) {
-		System.out.println(a == b? 'a' + " = " + 'b' : a<b? 'a' + " != " + 'b' + "\n" + 'a' + " < " + 'b' + "\n" + 'a' + " <= " + 'b' : 'a' + " != " + 'b' + "\n" + 'a' + " > " + 'b' + "\n" + 'a' + " >= " + 'b');
-//		if(a == b) {
-//			System.out.println(a + " = " + b);
-//		}else {
-//			System.out.println(a + " != " + b);
-//			if(a < b) {
-//				System.out.println(a + " < " + b);
-//				System.out.println(a + " <= " + b);
-//			}else if(a > b) {
-//				System.out.println(a + " > " + b);
-//				System.out.println(a + " >= " + b);
-//			}
-//		}
-		
-	}
+
+    public void problemNo3() {
+    	int i = 1;
+    	
+    	System.out.println("\nOdd" + "\t" + "Even");
+    	do {
+    		
+    		if(i % 2 == 0) {
+    			System.out.print("   \t");
+    			System.out.println(i);
+    		}else {
+    			System.out.print(i);
+    		}
+    		
+    	}while(i++ < 100);
+    }
+    
+public void problemNo4() {
+    	
+    	int n = 1234;
+    	int divider = 1000;
+    	int sum = 0;
+    	
+    	while(divider != 1) {
+    		
+    		
+  		    sum += n / divider;
+  		    n = n % divider;
+  		    divider /= 10;
+    		}
+    	
+    	 System.out.println("\nSummation of the digits is : " + (sum + n));
+    	
+    }
+
+public static void space(int n) {
 	
-	public static void problemNo4() {
-		int n = 15;
-		System.out.println(n/10+n%10);
+	for(int i = 1; i <= (n-1)+(n-2); i++) {
+		System.out.print(" ");
 	}
-	
+}
 }
