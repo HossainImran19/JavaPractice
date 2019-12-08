@@ -13,7 +13,7 @@ class ListOfDummy {
     private int i = 0;
 
     public int size(){
-        return 0;
+        return ara.length;
     }
     
     public void add(String st){
@@ -35,7 +35,7 @@ class ListOfDummy {
         }
     }
     
-    public String remove(int index){
+    public void remove(int index){
         
         i--;
         ara = new String[i];
@@ -53,7 +53,6 @@ class ListOfDummy {
             ara1[k] = ara[k];
         
         }
-        return "";
     }
     
     public void remove(String item){
@@ -129,9 +128,4 @@ class ListOfDummy {
             
         }
     }
-    
-    public void addAll(ListOfDummy o){
-        
-    }
-    
 }
