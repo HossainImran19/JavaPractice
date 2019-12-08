@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-//Trying to make a implemention or Override of the methodes of Arraylist Class -_- .
+//Trying to make a implemention or Override of the methodes of ArrayList Class -_- .
 
 class ListOfDummy {
 
