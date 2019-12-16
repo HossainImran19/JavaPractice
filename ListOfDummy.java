@@ -128,4 +128,8 @@ class ListOfDummy {
             
         }
     }
+    
+    //public void addAll(Collection obj);
+    //public int indexOf(Object obj);
+    //public int lastIndexOf(Object obj);
 }
