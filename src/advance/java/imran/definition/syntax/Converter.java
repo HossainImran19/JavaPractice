@@ -10,7 +10,15 @@ package advance.java.imran.definition.syntax;
 @FunctionalInterface
 public interface Converter<T> {
 
+    // only one abstract method should be allowed
     String apply(String s);
+
+    static Integer add(int a, int b) {
+        return a + b;
+    }
+    boolean equals(Object obj);
+
+
 }
 
 
