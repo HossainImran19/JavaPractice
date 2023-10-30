@@ -1,4 +1,4 @@
-package advance.java.imran.lamda.expression;
+package advance.java.imran.a.lamda.expression;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package advance.java.imran.lamda.expression;
+package advance.java.imran.a.lamda.expression;
 
 public class Contact {
     public enum Gender {
