@@ -4,6 +4,9 @@ import java.util.function.Consumer;
 
 public class ScopeTest {
     public static void main(String[] args) {
+        // If we use lamda in a scope of a method
+        // then it will be located in the method scope.
+        // This scope is called 'Lexical Scope'.
         String msg = "";
 //        Consumer<String> consumer = msg -> System.out.println(msg);
         ScopeExample obj = new ScopeExample();
