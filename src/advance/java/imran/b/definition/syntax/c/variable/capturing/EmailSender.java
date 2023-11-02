@@ -27,23 +27,23 @@ public class EmailSender {
         emailSender.send(translator, "বাংলাদেশ");
     }
 
-    public void send(MessageTranslator translator,
+    private void send(MessageTranslator translator,
                      String msg) {
         String translated
                 = translator.translate(msg);
         System.out.println("Sending email with translated message " + translated);
     }
 
-    public void exampleOfMultithreading(List<Integer> list) {
+    private void exampleOfMultithreading(List<Integer> list) {
         // This code is not valid.
         // Because lamda trying to change the value of 'sum'
         // If we run this method in a multithreaded program
         // we need to syncronize to the variable of 'sum'.
         // If we syncronize the variable then
         // it will not give us the proper benefits of multithreading.
-        int sum = 0;
-        list.forEach(value -> {
-            sum += value;
-        });
+//        int sum = 0;
+//        list.forEach(value -> {
+//            sum += value;
+//        });
     }
 }
