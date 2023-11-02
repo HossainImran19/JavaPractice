@@ -7,6 +7,9 @@ public class ScopeTest {
         // If we use lamda in a scope of a method
         // then it will be located in the method scope.
         // This scope is called 'Lexical Scope'.
+        // If we try to compile this main method then
+        // it will give us an error.
+        // Because variable 'msg' is same to variable 'msg' of the lamda.
         String msg = "";
 //        Consumer<String> consumer = msg -> System.out.println(msg);
         ScopeExample obj = new ScopeExample();
