@@ -1,4 +1,4 @@
-package advance.java.imran.c.method.reference.a.types.references;
+package advance.java.imran.c.method.reference.a.types.references.a.stetic;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -23,11 +23,18 @@ public class StaticRefExample {
         // This will work...
         BiFunction<Integer, Integer, Integer> mapper1 = IntergerDemo::apply;
 
+        Calculator calculator = new Calculator();
+
+        // The following two lines are same....
+        calculator.calculate(8.0, a -> Math.sin(a));
+        calculator.calculate(10.0, Math::sin);
+
     }
 }
 
 class Calculator {
     public double calculate(Double d, Function<Double, Double> func) {
+
         return func.apply(d);
     }
 

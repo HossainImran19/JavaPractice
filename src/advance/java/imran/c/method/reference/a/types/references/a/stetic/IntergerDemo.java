@@ -1,4 +1,4 @@
-package advance.java.imran.c.method.reference.a.types.references;
+package advance.java.imran.c.method.reference.a.types.references.a.stetic;
 
 @FunctionalInterface
 public interface IntergerDemo {
