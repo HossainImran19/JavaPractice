@@ -10,6 +10,7 @@ public interface GameSprite {
         setX(getX() + distance);
     }
 
+    // Default method can use abstract methods.
     // Default method only can use arguments.
     // But they can not read and write the states of interfaces.
     // Because interfaces have no states.
