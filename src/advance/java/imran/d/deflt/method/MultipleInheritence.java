@@ -77,10 +77,10 @@ class G implements E, F {
 // This code will not work or compiler will not compile.
 // Because MultipleInheritence implements two interfaces
 // which have same signature methods that is hi().
-public class MultipleInheritence implements Conversable, ConversablePlus, A{
-
-    public static void main(String[] args) {
-        G obj = new G();
-        obj.sayHell();
-    }
-}
+//public class MultipleInheritence implements Conversable, ConversablePlus, A{
+//
+//    public static void main(String[] args) {
+//        G obj = new G();
+//        obj.sayHell();
+//    }
+//}
