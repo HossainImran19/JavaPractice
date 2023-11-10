@@ -3,7 +3,9 @@ package advance.java.imran.e.optional;
 import java.util.Optional;
 
 public class OptionalMethods {
-    public static void main(String[] args) {
+    private static BookRepo bookRepo;
+    public static void main(String[] args)
+            throws Exception {
         // =======================================
         // method #1 of()
         // Optional.of()
@@ -44,16 +46,56 @@ public class OptionalMethods {
                 = Book.findBookByName("Java Programming Book");
         if (book.isPresent()) {
             Book book1 = book.get();
-            book1.buyIt(book);
+            book1.buyIt();
         } else {
             Book.writeMessageToPublisher();
         }
         // Using ifPresentOrElse() we can write that if else condition.
         Book.findBookByName("Advanced Java Programming")
                 .ifPresentOrElse(
-                        book1 -> book1.buyIt(Optional.of(book1)),
+                        book1 -> book1.buyIt(),
                         Book::writeMessageToPublisher
                 );
+
+        // =======================================
+        // method #8 or()
+        // If a book name is not found,
+        // the or() method is used to check
+        // if there is another book with different name.
+        Optional<Book> optionalBook
+                = Book.findBookByName("java programming")
+                .or(() -> Book.findBookByName("java thread programming"));
+
+        // =======================================
+        // method #9 orElse()
+        // If Optional may not contain value inside,
+        // then we can set a default value using orElse() method.
+        String myString = Optional.ofNullable(getNullableString()).orElse("Imran");
+
+        // =======================================
+        // method #10 orElseGet()
+        // Whether return value of getNullableString() null or not,
+        // calculateHaveyMethod() will be executed.
+        // If we want to execute while the return value of getNullableString() is null,
+        // then we need to use orElseGet() method.
+        String string = Optional.ofNullable(getNullableString()).orElse(calculateHaveyMethod());
+        String string1 = Optional.ofNullable(getNullableString()).orElseGet(OptionalMethods::calculateHaveyMethod);
+
+
+        // =======================================
+        // method #11 orElseThrow()
+        Book book1 = bookRepo.findOne(1L).orElseThrow(BookNotFoundException::new);
+
+        // =======================================
+        // method #12 Optional<U> map(Function<? super T, ? extends U> mapper)
+        // It's helps to convert one data type to another data type.
+        Optional<Book> optionalBook1 = bookRepo.findById(1L);
+        Optional<String> optionalString = optionalBook1.map(Book::buyIt);
+
+    }
+
+    private static String calculateHaveyMethod() {
+        return "Havey";
     }
 
     public static String getNullableString() {
@@ -64,13 +106,20 @@ public class OptionalMethods {
     }
 }
 
+interface BookRepo {
+    Optional<Book> findOne(Long id);
+
+    public Optional<Book> findById(Long id);
+}
+
 class Book {
     public static Optional<Book> findBookByName(String name) {
         return Optional.empty();
     }
 
-    public void buyIt(Optional<Book> book) {
+    public String buyIt() {
         System.out.println("Book is bought");
+        return "null";
     }
 
     public static void writeMessageToPublisher() {
