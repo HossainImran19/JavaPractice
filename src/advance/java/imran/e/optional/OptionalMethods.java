@@ -92,6 +92,35 @@ public class OptionalMethods {
         Optional<Book> optionalBook1 = bookRepo.findById(1L);
         Optional<String> optionalString = optionalBook1.map(Book::buyIt);
 
+        // =======================================
+        // method #13 <U> Optional<U> flatMap(Function<? super T, ? extends Optional<? extends U>> mapper)
+
+        Optional<Man> optionalMan = findByManById(1L);
+        Optional<Optional<SmartPhone>> optionalSmartPhone
+                = optionalMan.map(Man::getSmartPhone);
+
+        // Now we want to separate smartPhone from that Optional...
+        if (optionalSmartPhone.isPresent()) {
+            Optional<SmartPhone> smartPhoneOptional
+                    = optionalSmartPhone.get();
+            if (smartPhoneOptional.isPresent()) {
+                SmartPhone smartPhone = smartPhoneOptional.get();
+                Optional<EWallet> optionalEWallet
+                        = smartPhone.geteWallet();
+            }
+        }
+
+        // Instead of this ugly code we can overwrite using flagMap() method
+        Optional<Man> man2 = findByManById(1L);
+        Optional<SmartPhone> optional
+                = man2.flatMap(man4 -> man4.getSmartPhone());
+    }
+
+    public Optional<String> getEWalletAccountNumber(Man man) {
+        return Optional.ofNullable(man)
+                .flatMap(Man::getSmartPhone)
+                .flatMap(SmartPhone::geteWallet)
+                .flatMap(EWallet::getAccountNumber);
     }
 
     private static String calculateHaveyMethod() {
@@ -103,6 +132,10 @@ public class OptionalMethods {
     }
     public static void doSomething(String string) {
         // Something
+    }
+
+    public static Optional<Man> findByManById(Long id) {
+        return Optional.empty();
     }
 }
 
@@ -127,7 +160,30 @@ class Book {
     }
 }
 class Man {
+    SmartPhone smartPhone;
+
+    public Optional<SmartPhone> getSmartPhone() {
+        return Optional.empty();
+    }
+
     public static Man findMan() {
         return null;
+    }
+}
+
+class SmartPhone {
+
+    EWallet eWallet;
+
+    public Optional<EWallet> geteWallet() {
+        return Optional.empty();
+    }
+}
+
+class EWallet {
+    String accountNumber;
+
+    public Optional<String> getAccountNumber() {
+        return Optional.of("Account");
     }
 }
