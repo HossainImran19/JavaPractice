@@ -1,5 +1,6 @@
 package advance.java.imran.e.optional;
 
+import java.util.List;
 import java.util.Optional;
 
 public class OptionalMethods {
@@ -114,6 +115,22 @@ public class OptionalMethods {
         Optional<Man> man2 = findByManById(1L);
         Optional<SmartPhone> optional
                 = man2.flatMap(man4 -> man4.getSmartPhone());
+
+        // =======================================
+        // method #14 filter()
+        Man man3 = findByName("Imran");
+        if (man3 != null && "male".equals(man3.getSex())) {
+            // doSomething
+        }
+
+        // we can write this code using filter() method
+        Optional.ofNullable(findByName("Imran"))
+                .filter(man4 -> "male".equals(man4.getSex()))
+                .ifPresent(OptionalMethods::doSomthing);
+
+        // =======================================
+        // method #15 stream()
+        List<String> countryName = List.of("Banglades", "India", "Afganistan", "Pakistan", "Nepal");
     }
 
     public Optional<String> getEWalletAccountNumber(Man man) {
@@ -134,8 +151,16 @@ public class OptionalMethods {
         // Something
     }
 
+    public static void doSomthing(Man man) {
+
+    }
+
     public static Optional<Man> findByManById(Long id) {
         return Optional.empty();
+    }
+
+    public static Man findByName(String name) {
+        return new Man();
     }
 }
 
@@ -143,6 +168,10 @@ interface BookRepo {
     Optional<Book> findOne(Long id);
 
     public Optional<Book> findById(Long id);
+}
+
+interface ManRepo {
+    Man findManBy(String name);
 }
 
 class Book {
@@ -160,7 +189,19 @@ class Book {
     }
 }
 class Man {
+    String name;
+    String sex;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
     SmartPhone smartPhone;
+
 
     public Optional<SmartPhone> getSmartPhone() {
         return Optional.empty();
