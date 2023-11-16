@@ -128,9 +128,7 @@ public class OptionalMethods {
                 .filter(man4 -> "male".equals(man4.getSex()))
                 .ifPresent(OptionalMethods::doSomthing);
 
-        // =======================================
-        // method #15 stream()
-        List<String> countryName = List.of("Banglades", "India", "Afganistan", "Pakistan", "Nepal");
+
     }
 
     public Optional<String> getEWalletAccountNumber(Man man) {
