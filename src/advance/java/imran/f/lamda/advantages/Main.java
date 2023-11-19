@@ -37,9 +37,10 @@ class People {
     }
 }
 
-class Person extends People{
+class Person extends People {
     @Override
     void doSometing() {
+
         System.out.println("from Person class");
     }
 
