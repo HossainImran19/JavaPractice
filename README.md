@@ -44,12 +44,12 @@
     ```
   </details>
 
-- **Decorator Patter:**Attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing for extending functionality
-  <details>
-    <summary>Example</summary>
+- **Decorator Pattern:**
+<details>
+<summary>Exammple</summary>
 
 ```java
-public class DecoratorPattern {
+    public class DecoratorPattern {
 
     public static void main(String[] args) {
         // we can create different types of coffee
@@ -160,6 +160,6 @@ class VanillaAlmond extends CoffeeDecorator {
         return super.getIngredient() + " VanilaAlmond";
     }
 }
-    
+
 ```
-  </details>
+</details>
