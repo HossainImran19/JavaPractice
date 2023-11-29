@@ -17,7 +17,7 @@
     private static final ConnectionPool INSTANCE
             = new ConnectionPool();
     // Ensuring that none of other classes can't create
-    // Instances of this.class
+    // Instances directly.
     private ConnectionPool(){}
 
     // Only method by which we can get the instance
