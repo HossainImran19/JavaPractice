@@ -45,10 +45,10 @@
   </details>
 
 - **Decorator Pattern:**
-<details>
-<summary>Exammple</summary>
+  - <details>
+    <summary>Example</summary>
 
-```java
+    ```java
     public class DecoratorPattern {
 
     public static void main(String[] args) {
@@ -88,25 +88,25 @@
 
         return reduced.apply(coffee);
     }
-}
+    }
 
-@FunctionalInterface
-interface Coffee {
+    @FunctionalInterface
+    interface Coffee {
     // Method can add a property
     String getIngredient();
-}
+    }
 
-// Concrete class implementing Coffee
-class CoffeeBean implements Coffee {
+    // Concrete class implementing Coffee
+    class CoffeeBean implements Coffee {
     @Override
     public String getIngredient() {
 
         return "Coffee Bean";
     }
-}
+    }
 
-// Decorator class which have a reference of Coffee 
-abstract class CoffeeDecorator implements Coffee {
+    // Decorator class which have a reference of Coffee 
+    abstract class CoffeeDecorator implements Coffee {
     private final Coffee coffee;
 
     // Initializing the coffee property.
@@ -118,10 +118,10 @@ abstract class CoffeeDecorator implements Coffee {
     public String getIngredient() {
         return coffee.getIngredient();
     }
-}
+    }
 
-// Concrete Decorator classes
-class SaltedCaremelFudge extends CoffeeDecorator {
+    // Concrete Decorator classes
+    class SaltedCaremelFudge extends CoffeeDecorator {
     SaltedCaremelFudge(Coffee coffee) {
         super(coffee);
     }
@@ -129,9 +129,9 @@ class SaltedCaremelFudge extends CoffeeDecorator {
     public String getIngredient() {
         return super.getIngredient() + " SaltedCaramelFudge";
     }
-}
+    }
 
-class SweetMilk extends CoffeeDecorator {
+    class SweetMilk extends CoffeeDecorator {
     SweetMilk(Coffee coffee) {
         super(coffee);
     }
@@ -139,9 +139,9 @@ class SweetMilk extends CoffeeDecorator {
     public String getIngredient() {
         return super.getIngredient() + " SweetMilk";
     }
-}
+    }
 
-class DarkCookieCrumb extends CoffeeDecorator {
+    class DarkCookieCrumb extends CoffeeDecorator {
     DarkCookieCrumb(Coffee coffee) {
         super(coffee);
     }
@@ -149,17 +149,16 @@ class DarkCookieCrumb extends CoffeeDecorator {
     public String getIngredient() {
         return super.getIngredient() + " DarkCookieCrumb";
     }
-}
+    }
 
-class VanillaAlmond extends CoffeeDecorator {
+    class VanillaAlmond extends CoffeeDecorator {
     VanillaAlmond(Coffee coffee) {
         super(coffee);
     }
     @Override
     public String getIngredient() {
-        return super.getIngredient() + " VanilaAlmond";
+          return super.getIngredient() + " VanilaAlmond";
+      }
     }
-}
-
-```
-</details>
+    ```
+  </details>
