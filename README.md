@@ -45,7 +45,7 @@
   </details>
 
 - **Decorator Pattern:**
-  - <details>
+  <details>
     <summary>Example</summary>
 
     ```java
