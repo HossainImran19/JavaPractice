@@ -16,6 +16,7 @@ public class DecoratorPattern {
                         )
                 )
         );
+
         System.out.println(coffee.getIngredient());
 
         // With the Lamda Expression
@@ -29,6 +30,7 @@ public class DecoratorPattern {
 
         System.out.println(coffeeWithLamda.getIngredient());
     }
+    @SafeVarargs
     public static Coffee getCoffeeWithExtras(Coffee coffee,
                                              Function<Coffee, Coffee>... ingregients) {
         Function<Coffee, Coffee> inital = kopi -> kopi;
