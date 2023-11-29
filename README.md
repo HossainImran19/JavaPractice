@@ -43,3 +43,123 @@
     }
     ```
   </details>
+
+- **Decorator Patter:**Attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing for extending functionality
+  <details>
+    <summary>Example</summary>
+
+```java
+public class DecoratorPattern {
+
+    public static void main(String[] args) {
+        // we can create different types of coffee
+        // by combining constructors using the decorator pattern.
+        var coffee = new VanillaAlmond(
+                new SweetMilk(
+                        new SaltedCaremelFudge(
+                                new DarkCookieCrumb(
+                                        new CoffeeBean()
+                                )
+                        )
+                )
+        );
+        
+        System.out.println(coffee.getIngredient());
+    }
+    @SafeVarargs
+    public static Coffee getCoffeeWithExtras(Coffee coffee,
+                                             Function<Coffee, Coffee>... ingregients) {
+        Function<Coffee, Coffee> inital = kopi -> kopi;
+
+
+        for (Function<Coffee, Coffee> ingredient : ingregients) {
+            inital = inital.andThen(ingredient);
+        }
+
+        // we can write that in this way
+        Function<Coffee, Coffee> reduced
+                = Stream
+                .of(ingregients)
+                .reduce(
+                        Function.identity(),
+                        Function::andThen
+                );
+
+
+        return reduced.apply(coffee);
+    }
+}
+
+@FunctionalInterface
+interface Coffee {
+    // Method can add a property
+    String getIngredient();
+}
+
+// Concrete class implementing Coffee
+class CoffeeBean implements Coffee {
+    @Override
+    public String getIngredient() {
+
+        return "Coffee Bean";
+    }
+}
+
+// Decorator class which have a reference of Coffee 
+abstract class CoffeeDecorator implements Coffee {
+    private final Coffee coffee;
+
+    // Initializing the coffee property.
+    CoffeeDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    @Override
+    public String getIngredient() {
+        return coffee.getIngredient();
+    }
+}
+
+// Concrete Decorator classes
+class SaltedCaremelFudge extends CoffeeDecorator {
+    SaltedCaremelFudge(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public String getIngredient() {
+        return super.getIngredient() + " SaltedCaramelFudge";
+    }
+}
+
+class SweetMilk extends CoffeeDecorator {
+    SweetMilk(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public String getIngredient() {
+        return super.getIngredient() + " SweetMilk";
+    }
+}
+
+class DarkCookieCrumb extends CoffeeDecorator {
+    DarkCookieCrumb(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public String getIngredient() {
+        return super.getIngredient() + " DarkCookieCrumb";
+    }
+}
+
+class VanillaAlmond extends CoffeeDecorator {
+    VanillaAlmond(Coffee coffee) {
+        super(coffee);
+    }
+    @Override
+    public String getIngredient() {
+        return super.getIngredient() + " VanilaAlmond";
+    }
+}
+    
+```
+  </details>
