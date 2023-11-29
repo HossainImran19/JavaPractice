@@ -7,8 +7,7 @@
   3. Object method call.
 ### Design Patterns
 - **Singleton Pattern:** Ensures that a class has only one instance and provides a global point of access to it.
-- 
-  - <details>
+  <details>
     <summary>Example</summary>
   
     ```java
@@ -40,7 +39,7 @@
         config.setMaximumPoolSize(Integer.parseInt(maxPoolSize));
 
         return new HikariDataSource(config);
+        }
     }
-}
     ```
-    </details>
+  </details>
