@@ -7,7 +7,9 @@
   3. Object method call.
 ### Design Patterns
 - **Singleton Pattern:** Ensures that a class has only one instance and provides a global point of access to it.
-  - <summary>Example</summary>
+- 
+  - <details>
+    <summary>Example</summary>
   
     ```java
     public final class ConnectionPool {
@@ -41,3 +43,4 @@
     }
 }
     ```
+    </details>
