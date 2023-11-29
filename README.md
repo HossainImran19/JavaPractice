@@ -8,6 +8,7 @@
 ### Design Patterns
 - **Singleton Pattern:** Ensures that a class has only one instance and provides a global point of access to it.
   - <summary>Example</summary>
+  
     ```java
     public final class ConnectionPool {
     // This ConnectionPool class have only one instance
