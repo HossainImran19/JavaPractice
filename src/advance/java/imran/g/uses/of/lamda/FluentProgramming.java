@@ -39,6 +39,15 @@ public class FluentProgramming {
                         .addVegetables("Cucumber")
                 );
 
+        ConfigurationManager confManager
+                = ConfigurationManager.make(
+                        configurationManager -> configurationManager
+                                .setUrl("production.mydatabase.com")
+                                .setUsername("imran")
+                                .setPassword("1234")
+                                .addRole("admin")
+                                .addRole("Developer")
+                );
     }
 }
 
@@ -75,5 +84,44 @@ class Sandwich {
         Sandwich sandwich = new Sandwich();
         sandwichConsumer.accept(sandwich);
         return sandwich;
+    }
+}
+
+class ConfigurationManager {
+    private String url;
+    private String username;
+    private String password;
+    private List<String> roleList = new ArrayList<>();
+
+    private ConfigurationManager() {
+
+    }
+
+    public ConfigurationManager setUrl(String url) {
+        this.url = url;
+        return this;
+    }
+
+    public ConfigurationManager setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public ConfigurationManager setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public ConfigurationManager addRole(String role) {
+        this.roleList.add(role);
+        return this;
+    }
+
+    public static ConfigurationManager make(Consumer<ConfigurationManager> consumer) {
+        System.out.println("Making a configurationManager");
+        ConfigurationManager confManager = new ConfigurationManager();
+
+        consumer.accept(confManager);
+        return confManager;
     }
 }
