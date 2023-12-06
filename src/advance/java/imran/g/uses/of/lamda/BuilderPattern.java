@@ -1,5 +1,7 @@
 package advance.java.imran.g.uses.of.lamda;
 
+import java.util.function.Consumer;
+
 public class BuilderPattern {
     public static void main(String[] args) {
 
@@ -15,6 +17,25 @@ class Computer {
         this.processor = processor;
     }
 
+    public static void create(Consumer<ComputerBuilder> builder) {
+//        builder.accept(processor -> disk -> new Computer(disk, processor));
+    }
+
+    interface ComputerBuilder {
+        Processor.ProcessorBuilder with(Processor processor);
+    }
+
+    interface ProcessorBuilder {
+        Computer and(Disk disk);
+    }
+
+//    public static void main(String[] args) {
+//        Computer.create(builder -> builder
+//                .with(processor().core(2).speed(3).i386())
+//                .and(disk().size(512).speed(7200).sata())
+//        );
+//    }
+
     public Disk getDisk() {
         return disk;
     }
@@ -25,32 +46,32 @@ class Computer {
 
     // This inner class is configuring
     // the properties of the containing class.
-    public static final class ComputerBuilder {
-        private Disk disk;
-        private Processor processor;
-
-        private ComputerBuilder() {
-
-        }
-
-        public static ComputerBuilder aComputer() {
-            return new ComputerBuilder();
-        }
-
-        public ComputerBuilder withDisk(Disk disk) {
-            this.disk = disk;
-            return this;
-        }
-
-        public ComputerBuilder withProcessor(Processor processor) {
-            this.processor = processor;
-            return this;
-        }
-
-        public Computer build() {
-            return new Computer(disk, processor);
-        }
-    }
+//    public static final class ComputerBuilder {
+//        private Disk disk;
+//        private Processor processor;
+//
+//        private ComputerBuilder() {
+//
+//        }
+//
+//        public static ComputerBuilder aComputer() {
+//            return new ComputerBuilder();
+//        }
+//
+//        public ComputerBuilder withDisk(Disk disk) {
+//            this.disk = disk;
+//            return this;
+//        }
+//
+//        public ComputerBuilder withProcessor(Processor processor) {
+//            this.processor = processor;
+//            return this;
+//        }
+//
+//        public Computer build() {
+//            return new Computer(disk, processor);
+//        }
+//    }
 }
 
 class Disk {
