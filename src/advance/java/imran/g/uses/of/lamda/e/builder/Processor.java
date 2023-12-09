@@ -15,18 +15,6 @@ public class Processor {
         this.type = type;
     }
 
-    public int getCores() {
-        return cores;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
     public static ProcessorBuilder processor() {
         return core -> speed -> type -> new Processor(core, speed, type);
     }

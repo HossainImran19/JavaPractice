@@ -15,17 +15,6 @@ public class Disk {
         this.type = type;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public Type getType() {
-        return type;
-    }
 
     public static DiskBuilder disk() {
         return size -> speed -> type -> new Disk(size, speed, type);
