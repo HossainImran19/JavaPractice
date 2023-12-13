@@ -3,7 +3,8 @@
 <details>
     <summary>Travers</summary>
 
-    ```.java
+    ```.js
+        
         Map<? super Object, String> errors = new HashMap<>();
 
         String string = "error";
