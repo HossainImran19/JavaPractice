@@ -1,7 +1,8 @@
 package advance.java.imran.HAdvanceGenerics.AGenericsInheritanceSubTyping;
 
+import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.*;
 
 public class SubTyping {
 
@@ -33,7 +34,36 @@ public class SubTyping {
         List<Object> objects = List.of(new Object());
         // objects = strings;
 
+        // We can not pass num as argument to processWithNumberList.
+        // But using wildcard '?' we can say that to the method
+        // the type is 'unknown'.
+        // Now we can pass any type of object.
+        List<Integer> num = List.of(1, 2,3, 4, 5);
+        processWithUnknownList(num);
+
+        List<Double> num1 = List.of(1.3, 2.5,3.3, 4.3, 5.3);
+        processWithUnknownList(num);
+
+
+
 
     }
 
+    public static Number processWithNumberList(List<Number> list) {
+        int sum = 0;
+        for (Number number : list) {
+            sum += number.intValue();
+        }
+        return sum;
+    }
+
+    // Using Unbounded wildcard we can pass
+    // any type List of object in this method.
+    // But the conundrums remains like
+    // we can not write the values of List<?>
+    // Because compiler can't determine the exact type in compile time.
+    public static void processWithUnknownList(List<?> list) {
+        for (var object : list)
+            System.out.println(object);
+    }
 }
