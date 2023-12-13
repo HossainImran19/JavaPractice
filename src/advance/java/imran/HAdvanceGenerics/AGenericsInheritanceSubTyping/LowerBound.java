@@ -1,8 +1,7 @@
 package advance.java.imran.HAdvanceGenerics.AGenericsInheritanceSubTyping;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.io.InputStream;
+import java.util.*;
 
 public class LowerBound {
 
@@ -11,12 +10,25 @@ public class LowerBound {
         List<Integer> dest = new ArrayList<>(Collections.nCopies(src.size(), null));
 
         // PECS: Producer extends and Consumer super. This is a Mnemonic.
-        // This means..
+        // This means
         // Extends will be used when we want to provide a value and
         // Super will be used when we want to read a value.
         // Collections.copy(List<? super T> destination, List<? extends T> source);
-        Collections.copy(dest, src);
-        printAll(dest);
+//        Collections.copy(dest, src);
+//        printAll(dest);
+
+        Map<? super Object, String> errors = new HashMap<>();
+
+        String string = "error";
+        InputStream inputStream = InputStream.nullInputStream();
+
+        errors.put(inputStream, "This is inputstream");
+        errors.put(string, "This is String");
+
+        for (var entry : errors.entrySet()) {
+            System.out.println(entry.getKey() + "/" + entry.getValue());
+        }
+
     }
 
     public static void printAll(List<Integer> dest) {
