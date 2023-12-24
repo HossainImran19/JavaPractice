@@ -61,6 +61,7 @@ public class Introduction {
     public static String findEnglinshBooksWithSteam(List<Book> books) {
         final String Language = "English";
         final String comma = ",";
+
         return books
                 .stream()
                 .filter(book -> book.getLanguage().equals(Language))
