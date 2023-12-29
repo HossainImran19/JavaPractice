@@ -1,4 +1,58 @@
-# Advance Java Practice
+# Java Practice
+## Contents
+• [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmap)
+
+#### map(Function<? super T, ? extends R> mapper)
+```java
+// map(Function<? super T, ? extends R> mapper)
+// is used for transforming each element of the stream one type to another.
+Stream<Person> personStream
+        = Stream.of(
+        new Person("Imran", 16, Gender.MALE),
+        new Person("Mizan", 32, Gender.MALE),
+        new Person("Mihad", 3, Gender.MALE)
+);
+
+// Here by using map() method we are creating a nameStream form the personStream
+// to store the names of each person.
+        personStream.filter(SomeMethods::isOlderThan15)
+                .map(Person::getName)
+                .forEach(val -> System.out.println(val + " "));
+```
+### flatMap()
+```java
+// 4. flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
+        // Creating developer team where each developer knows one or multiple languages.
+        List<Developer> developers = new ArrayList<>();
+        //developer 1.
+        Developer imran = new Developer("Imran");
+        imran.add("C++");
+        imran.add("Java");
+        imran.add("HTML");
+        //developer 2.
+        Developer mizan = new Developer("Mizan");
+        mizan.add("Python");
+        mizan.add("JavaScript");
+        mizan.add("HTML");
+
+        developers.add(imran);
+        developers.add(mizan);
+
+        // Creating a stream of Set<String> using map() to store the sets of languages known by the developers.
+        Stream<Set<String>> languages = developers.stream()
+                .map(Developer::getLanguages);
+        // Transforming a Set<String> stream into a List<Set<String>>.
+        List<Set<String>> langList = languages.toList();
+        for (var language : langList)
+            System.out.println(language);
+
+        // What we actually need is a combined list of strings(languages) where all the strings are together.
+        // we can do this by using flatMap();
+        developers.stream()
+                .map(Developer::getLanguages)
+                .flatMap(Collection::stream)
+                .forEach(System.out::println);
+```
 - **Overhead:** Amount of Time, Memory, Bandwidth or Resources required to do a specific task.
 - Comaratively, runtime overheading of **Anonymous Inner Class** is sligthly higher than **Lamda Expression**.
 - The Overheads of the Anonymous Inner class are

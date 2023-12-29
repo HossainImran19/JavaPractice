@@ -1,11 +1,14 @@
 package advance.java.imran.IStream.introduction;
 
+import static advance.java.imran.IStream.introduction.Person.Gender;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -89,7 +92,7 @@ public class SomeMethods {
         Stream<Integer> evenNumbers = numbers.filter(val -> val % 2 == 0);
         evenNumbers.forEach(val -> System.out.print(val + " "));
 
-        // Intermediate Operations
+        // ---------------- Intermediate Operations ---------------------
         //============================================
         // 2. sorted()
         // Creating a list of Persons.
@@ -109,5 +112,58 @@ public class SomeMethods {
                         .thenComparing(Person::getAge)
                         .thenComparing(Person::getSallary)
                 ).toList();
+
+        //============================================
+        // 3. map(Function<? super T, ? extends R> mapper)
+        // is used for transforming each element of the stream one type to another.
+        Stream<Person> personStream
+                = Stream.of(
+                new Person("Imran", 16, Gender.MALE),
+                new Person("Mizan", 32, Gender.MALE),
+                new Person("Mihad", 3, Gender.MALE)
+        );
+
+        // Here by using map() method we are creating a nameStream form the personStream
+        // to store the names of each person.
+        personStream.filter(SomeMethods::isOlderThan15)
+                .map(Person::getName)
+                .forEach(val -> System.out.println(val + " "));
+
+        //============================================
+        // 4. flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
+        // Creating developer team where each developer knows one or multiple languages.
+        List<Developer> developers = new ArrayList<>();
+        //developer 1.
+        Developer imran = new Developer("Imran");
+        imran.add("C++");
+        imran.add("Java");
+        imran.add("HTML");
+        //developer 2.
+        Developer mizan = new Developer("Mizan");
+        mizan.add("Python");
+        mizan.add("JavaScript");
+        mizan.add("HTML");
+
+        developers.add(imran);
+        developers.add(mizan);
+
+        // Creating a stream of Set<String> using map() to store the sets of languages known by the developers.
+        Stream<Set<String>> languages = developers.stream()
+                .map(Developer::getLanguages);
+        // Transforming a Set<String> stream into a List<Set<String>>.
+        List<Set<String>> langList = languages.toList();
+        for (var language : langList)
+            System.out.println(language);
+
+        // What we actually need is a combined list of strings(languages) where all the strings are together.
+        // we can do this by using flatMap();
+        developers.stream()
+                .map(Developer::getLanguages)
+                .flatMap(Collection::stream)
+                .forEach(System.out::println);
+    }
+
+    private static boolean isOlderThan15(Person person) {
+        return 15 < person.getAge();
     }
 }

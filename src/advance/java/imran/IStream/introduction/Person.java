@@ -1,9 +1,13 @@
 package advance.java.imran.IStream.introduction;
 
 public class Person {
-    String name;
-    int age;
-    double sallary;
+    enum Gender {
+        MALE, FEMALE
+    }
+    private String name;
+    private int age;
+    private Gender gender;
+    private double sallary;
 
     public Person(String name, int age, double sallary) {
         this.name = name;
@@ -11,6 +15,18 @@ public class Person {
         this.sallary = sallary;
     }
 
+    public Person(String name, int age, Gender gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
     public double getSallary() {
         return sallary;
     }
