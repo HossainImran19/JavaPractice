@@ -1,7 +1,14 @@
 # Java Practice
 ## Contents
-• [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmap)
+• [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
 
+#### distinct()
+```java
+    // 5. Stream<T> distinct() returns a stream 
+    // that holds only distinct elements.
+    List<Integer> numbers1 = Arrays.asList(1, 2, 3, 3, 3, 4, 5, 5, 5, 6, 9);
+    numbers1.stream().distinct().forEach(System.out::println);
+```
 #### map(Function<? super T, ? extends R> mapper)
 ```java
 // map(Function<? super T, ? extends R> mapper)
@@ -19,9 +26,9 @@ Stream<Person> personStream
                 .map(Person::getName)
                 .forEach(val -> System.out.println(val + " "));
 ```
-### flatMap()
+#### flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
 ```java
-// 4. flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
+        // 4. flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
         // Creating developer team where each developer knows one or multiple languages.
         List<Developer> developers = new ArrayList<>();
         //developer 1.
@@ -98,6 +105,58 @@ Stream<Person> personStream
     ```
   </details>
 
+- **Factory Method Pattern**:  It defines an interface for creating an object, but the actual instantiation is deferred to subclasses.
+  <details>
+    <summary>Key Notes</summary>
+  
+    ```.md
+  1. when should we use this pattern
+   
+    ```
+  </details>
+  <details>
+    <summary>Example</summary>
+  
+    ```java
+  // The Factory method relies heavily on interface
+  // Product class served as an abstraction for different types of Documents
+  interface Document {
+    void open();
+    void save();
+  }
+  // Product type of A
+  class DocumentA implements Document {
+    @Override
+    void open() {
+  
+    }
+    @Override
+    void save() {
+  
+    }
+  }
+  // Product type of B
+  class DocumentB implements Document {
+    @Override
+    void open() {
+  
+    }
+    @Override
+    void save() {
+  
+    }
+  // We can add other ConcreteProducts similarly.
+  // ......
+  }
+  
+  // Creator is an abstract class with a factory method createDocument(), 
+  // and some other method for some specific operations.
+  // createProduct/createDocument is responsible for creating instances of the Product/Document interface.
+  public abstract class DocumentCreator { 
+    abstract Document createDocument();  
+  } 
+    ```
+  </details>
 - **Decorator Pattern:** Attaches additional responsibilities to an object dynamically, providing a flexible alternative to subclassing for extending functionality.
   <details>
     <summary>Example</summary>

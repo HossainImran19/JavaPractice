@@ -161,6 +161,14 @@ public class SomeMethods {
                 .map(Developer::getLanguages)
                 .flatMap(Collection::stream)
                 .forEach(System.out::println);
+
+        //============================================
+        // 5. Stream<T> distinct()
+        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 3, 3, 4, 5, 5, 5, 6, 9);
+        numbers1.stream().distinct().forEach(System.out::println);
+
+        //============================================
+        // 6. Stream<T> sorted
     }
 
     private static boolean isOlderThan15(Person person) {
