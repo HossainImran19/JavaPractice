@@ -84,7 +84,8 @@ public class SomeMethods {
             throw new RuntimeException("Unable to access the url");
         }
 
-        // Intermediate Operations
+        // ---------------- Intermediate Operations ---------------------
+
         //============================================
         // 1. filter()
         // here boxed() wraps each primitive int value into Integer object.
@@ -92,13 +93,14 @@ public class SomeMethods {
         Stream<Integer> evenNumbers = numbers.filter(val -> val % 2 == 0);
         evenNumbers.forEach(val -> System.out.print(val + " "));
 
-        // ---------------- Intermediate Operations ---------------------
         //============================================
-        // 2. sorted()
+        // 2. Stream<T> sorted(Comparator<? super T> comparator) method does not modify the source;
+        // instead, it returns a new sorted sequence or stream.
         // Creating a list of Persons.
         List<Person> people = List.of(
-                new Person("irman", 10, 233.00),
+                new Person("imran", 10, 233.00),
                 new Person("rasel", 100, 234.00),
+                new Person("rasel", 200, 234.00),
                 new Person("rasel", 5, 777.00),
                 new Person("mihad", 3, 88.00)
         );
@@ -112,6 +114,15 @@ public class SomeMethods {
                         .thenComparing(Person::getAge)
                         .thenComparing(Person::getSallary)
                 ).toList();
+
+        // In the following snippet we are sorting Persons ascending order based on their names.
+        // If names are equal then descending order based on their ages.
+        people.stream()
+                .sorted(Comparator.comparing(Person::getName)
+                        .thenComparing(Comparator.comparing(Person::getAge)
+                                .reversed())
+                )
+                .forEach(val -> System.out.println(val.getName() + " " + val.getAge()));
 
         //============================================
         // 3. map(Function<? super T, ? extends R> mapper)

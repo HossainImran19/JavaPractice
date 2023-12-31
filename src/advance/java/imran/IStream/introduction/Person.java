@@ -7,7 +7,7 @@ public class Person {
     private String name;
     private int age;
     private Gender gender;
-    private double sallary;
+    private Double sallary;
 
     public Person(String name, int age, double sallary) {
         this.name = name;
@@ -27,11 +27,12 @@ public class Person {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-    public double getSallary() {
+
+    public Double getSallary() {
         return sallary;
     }
 
-    public void setSallary(double sallary) {
+    public void setSallary(Double sallary) {
         this.sallary = sallary;
     }
 

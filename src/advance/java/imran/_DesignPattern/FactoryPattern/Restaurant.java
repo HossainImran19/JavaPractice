@@ -4,7 +4,7 @@ package advance.java.imran._DesignPattern.FactoryPattern;
 public abstract class Restaurant {
     public Burger orderBurger() {
         Burger burger = createBurger();
-        burger.prepare();
+//        burger.prepare();
         return burger;
     }
 

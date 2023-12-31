@@ -1,7 +1,38 @@
 # Java Practice
 ## Contents
-• [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
+• [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
 
+#### Stream<T\> sorted(Comparator<? super T> comparator)
+```java
+        // 2. Stream<T> sorted(Comparator<? super T> comparator) method does not modify the source;
+        // instead, it returns a new sorted sequence or stream.
+        // Creating a list of Persons.
+        List<Person> people = List.of(
+                new Person("imran", 10, 233.00),
+                new Person("rasel", 100, 234.00),
+                new Person("rasel", 200, 234.00),
+                new Person("rasel", 5, 777.00),
+                new Person("mihad", 3, 88.00)
+        );
+
+        // Here we are sorting the persons based on their names.
+        // If the names are equal, then we sort based on their ages.
+        // If the ages are equal, then we sort based on their salary.
+        List<Person> sortedPersonList
+                = people.stream()
+                .sorted(Comparator.comparing(Person::getName)
+                        .thenComparing(Person::getAge)
+                        .thenComparing(Person::getSallary)
+                ).toList();
+        
+        // In this case we are sorting Persons ascending order based on their names.
+        // If names are equal then descending order based on their ages.
+        people.stream()
+                .sorted(Comparator.comparing(Person::getName)
+                        .thenComparing(Comparator.comparing(Person::getAge).reversed())
+                )
+                .forEach(val -> System.out.println(val.getName() + " " + val.getAge()));
+```
 #### distinct()
 ```java
     // 5. Stream<T> distinct() returns a stream 
