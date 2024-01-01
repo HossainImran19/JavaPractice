@@ -1,10 +1,55 @@
 # Java Practice
 ## Contents
-• [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
+• [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
 
+#### Stream<T\> dropWhile(Predicate<? super T> predicate)
+```java
+        // 10. Use dropWhile() this method work like complementory with takeWhile() method.
+        Stream.of(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+                .dropWhile(num -> num < 15)
+                .forEach(val -> System.out.println(val + " "));
+```
+#### Stream<T\> takeWhile(Predicate<? super T> predicate)
+```java
+        // Use takeWhile() to halt the processing when
+        // the condition specified by the predicate evaluates to false.
+        Stream.of(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+                .peek(val -> System.out.println("before: " + val))
+                .takeWhile(num -> num < 15)
+                .forEach(val -> System.out.println(val + " "));
+```
+#### Stream<T\> skip(long n); 
+```java
+        // Use skip() to process the stream 
+        // while excluding the specified number of elements passed as an argument.
+        IntStream.range(0, 20)
+                .filter(SomeMethods::isPrime)
+                .skip(5)
+                .forEach(System.out::println);
+```
+#### Stream<T\> limit(long maxSize)
+```java
+        // Use limit() to restrict the output or production of a limited set of elements.
+        IntStream.range(0, 1000)
+                .filter(SomeMethods::isPrime)
+                .limit(10)
+                .forEach(System.out::println);
+```
+#### Stream<T\> peek(Consumer<? super T> action)
+```java
+        // Use peek() for debugging
+        List<Person> personList
+                = people
+                .stream()
+                .peek(person -> System.out.println("before filter: " + person.getAge() + " : " + person.getName()))
+                .filter(SomeMethods::isOlderThan15)
+                .peek(person -> System.out.println("after filter: " + person.getAge() + " : " + person.getName()))
+                .sorted(Comparator.comparing(Person::getName))
+                .toList();
+```
 #### Stream<T\> sorted(Comparator<? super T> comparator)
 ```java
-        // 2. Stream<T> sorted(Comparator<? super T> comparator) method does not modify the source;
+        // Stream<T> sorted(Comparator<? super T> comparator) method does not modify the source;
         // instead, it returns a new sorted sequence or stream.
         // Creating a list of Persons.
         List<Person> people = List.of(
@@ -35,7 +80,7 @@
 ```
 #### distinct()
 ```java
-    // 5. Stream<T> distinct() returns a stream 
+    // Stream<T> distinct() returns a stream 
     // that holds only distinct elements.
     List<Integer> numbers1 = Arrays.asList(1, 2, 3, 3, 3, 4, 5, 5, 5, 6, 9);
     numbers1.stream().distinct().forEach(System.out::println);
@@ -59,7 +104,7 @@ Stream<Person> personStream
 ```
 #### flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
 ```java
-        // 4. flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
+        // flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)
         // Creating developer team where each developer knows one or multiple languages.
         List<Developer> developers = new ArrayList<>();
         //developer 1.

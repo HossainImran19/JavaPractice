@@ -179,7 +179,54 @@ public class SomeMethods {
         numbers1.stream().distinct().forEach(System.out::println);
 
         //============================================
-        // 6. Stream<T> sorted
+        // 6. Stream<T> peek(Consumer<? super T> action) used for debugging
+        List<Person> personList
+                = people
+                .stream()
+                .peek(person -> System.out.println("before filter: " + person.getAge() + " : " + person.getName()))
+                .filter(SomeMethods::isOlderThan15)
+                .peek(person -> System.out.println("after filter: " + person.getAge() + " : " + person.getName()))
+                .sorted(Comparator.comparing(Person::getName))
+                .toList();
+
+        //============================================
+        // 7. Use Stream<T> limit(long maxSize) to restrict the output or production of a limited set of elements.
+        IntStream.range(0, 1000)
+                .filter(SomeMethods::isPrime)
+                .limit(10)
+                .forEach(System.out::println);
+
+        //============================================
+        // 8. Use Stream<T> skip(long n) to process the stream
+        // while excluding the specified number of elements passed as an argument.
+        IntStream.range(0, 20)
+                .peek(value -> System.out.println("before skip: " + value))
+                .skip(5)
+                .peek(value -> System.out.println("after skip: " + value))
+                .filter(SomeMethods::isPrime)
+                .forEach(System.out::println);
+
+        //============================================
+        // 9. Use Stream<T> takeWhile(Predicate<? super T> predicate) to halt the processing when
+        // the condition specified by the predicate evaluates to false.
+        Stream.of(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+                .peek(val -> System.out.println("before: " + val))
+                .takeWhile(num -> num < 15)
+                .forEach(val -> System.out.println(val + " "));
+
+        //============================================
+        // 10. Use dropWhile() this method work like complementory with takeWhile() method.
+        Stream.of(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
+                .dropWhile(num -> num < 15)
+                .forEach(val -> System.out.println(val + " "));
+
+
+    }
+
+    private static boolean isPrime(int value) {
+        if (value < 2)
+            return false;
+        return IntStream.rangeClosed(2, value / 2).noneMatch(i -> value % i == 0);
     }
 
     private static boolean isOlderThan15(Person person) {
