@@ -1,9 +1,17 @@
 # Java Practice
 ## Contents
-**Terminal Operations**: • [count()](#long-count) 
+**Terminal Operations**: • [count()](#long-count) • [forEachOrdered()](#void-foreachorderedconsumer-super-t-action)
 
-**Intermediate Operations**: • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
+**Intermediate Operations**: • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#streamt-distinct) • [Design Pattern](#design-patterns)
 
+#### void forEachOrdered(Consumer<? super T> action)
+```java
+        // void forEachOrdered(Consumer<? super T> action) works like forEach() but it is guarantee that
+        // it will work in the order in which the elements of the stream is present.
+        String[] numbers = {"one", "two", "three", "four", "five"};
+        Stream.of(numbers).parallel()
+                .forEachOrdered(val -> System.out.println(val + " : " + Thread.currentThread()));
+```
 #### long count()
 ```java
         // Use long count() to find out the number of elements in the stream.
@@ -94,7 +102,7 @@
                 )
                 .forEach(val -> System.out.println(val.getName() + " " + val.getAge()));
 ```
-#### distinct()
+#### Stream<T> distinct()
 ```java
     // Stream<T> distinct() returns a stream 
     // that holds only distinct elements.
