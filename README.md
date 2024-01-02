@@ -1,7 +1,22 @@
 # Java Practice
 ## Contents
-• [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
+**Terminal Operations**: • [count()](#long-count) 
 
+**Intermediate Operations**: • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#distinct) • [Design Pattern](#design-patterns)
+
+#### long count()
+```java
+        // Use long count() to find out the number of elements in the stream.
+        Stream.of(1, 2, 3, 4).count();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("/home/peripatetic/Practice/OOP/Text.txt"));
+
+            long wordCount
+                    = lines.stream()
+                    .map(line -> line.split("(?<=[,.])|(?=[,.])|\\s+"))
+                    .flatMap(Stream::of)
+                    .count();
+```
 #### Stream<T\> dropWhile(Predicate<? super T> predicate)
 ```java
         // 10. Use dropWhile() as a complementary method to takeWhile(); 
