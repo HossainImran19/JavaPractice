@@ -4,7 +4,8 @@
 
 #### Stream<T\> dropWhile(Predicate<? super T> predicate)
 ```java
-        // 10. Use dropWhile() this method work like complementory with takeWhile() method.
+        // 10. Use dropWhile() as a complementary method to takeWhile(); 
+        // it works to exclude elements based on a specified condition.
         Stream.of(0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20)
                 .dropWhile(num -> num < 15)
                 .forEach(val -> System.out.println(val + " "));
