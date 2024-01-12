@@ -1,8 +1,8 @@
 # Java Practice
 ## Contents
-**Terminal Operations**: • [count()](#long-count) • [forEachOrdered()](#void-foreachorderedconsumer-super-t-action)
+**Terminal Operations**: • [max()/min()](#optionalt-mincomparator-super-t-comparator) • [toArray()](#a-a-toarrayintfunctiona-generator) • [count()](#long-count) • [forEachOrdered()](#void-foreachorderedconsumer-super-t-action)
 
-**Intermediate Operations**: • [max()/min()](#optionalt-mincomparator-super-t-comparator) • [toArray()](#a-a-toarrayintfunctiona-generator) • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#streamt-distinct) • [Design Pattern](#design-patterns)
+**Intermediate Operations**: • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#streamt-distinct) • [Design Pattern](#design-patterns)
 
 #### Optional<T> min(Comparator<? super T> comparator)
 ```java
