@@ -2,8 +2,41 @@
 ## Contents
 **Terminal Operations**: • [count()](#long-count) • [forEachOrdered()](#void-foreachorderedconsumer-super-t-action)
 
-**Intermediate Operations**: • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#streamt-distinct) • [Design Pattern](#design-patterns)
+**Intermediate Operations**: • [max()/min()](#optionalt-mincomparator-super-t-comparator) • [toArray()](#a-a-toarrayintfunctiona-generator) • [skip()](#streamt-skiplong-n-) • [limit()](#streamt-limitlong-maxsize) • [peek()](#streamt-peekconsumer-super-t-action) • [sorted()](#streamt-sortedcomparator-super-t-comparator) • [map()](#mapfunction-super-t--extends-r-mapper) • [flatMap()](#flatmapfunction-super-t--extends-stream-extends-r-mapper) • [distinct()](#streamt-distinct) • [Design Pattern](#design-patterns)
 
+#### Optional<T> min(Comparator<? super T> comparator)
+```java
+        // Use Optional<T> min(Comparator<? super T> comparator) to return minimum value based on the Comparator.
+        List<Person> personList
+                = List.of(
+                new Person("Imran", 16, Person.Gender.MALE),
+                new Person("Mizan", 32, Person.Gender.MALE),
+                new Person("Mihad", 3, Person.Gender.MALE)
+        );
+        // Here orElseThrow() returns Person type object or throws an Exception.
+        var minAge = personList.stream().min(Comparator.comparing(Person::getAge)).orElseThrow();
+        // Here max() returns Optional<Person> or empty Optional<Person>.
+        Optional<Person> maxAge = personList.stream().max(Comparator.comparing(Person::getAge));
+        // Conversion Stream of Integer Object to IntStream of primitive type.
+        var intStream
+                = Stream.of(1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 20030)
+                .mapToInt(Integer::intValue);
+        // The min() method returns an OptionalInt.
+        // orElseThrow() returns the value if a value is present,
+        // otherwise throws NoSuchElementException.
+        var mn = intStream.min().orElseThrow();
+```
+#### <A\> A[] toArray(IntFunction<A[]> generator)
+```java
+        // Use Object[] toArray() to transform a stream to an array.
+        Stream<Integer> integerStream = Stream.of(1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 10, 20030);
+        // The following array is an object array.
+        var integersObjects = integerStream.toArray();
+        // The toArray() takes an IntFunction as an argument
+        // which is a function that produces an array of the desired size.
+        // Here the size is determined based on the number of elements in the stream.
+        var integers = integerStream.toArray(Integer[]::new);
+```
 #### void forEachOrdered(Consumer<? super T> action)
 ```java
         // void forEachOrdered(Consumer<? super T> action) works like forEach() but it is guarantee that
